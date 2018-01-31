@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+  <metadata>
+    <id>cloud-screen-resolution</id>
+    <version>1.0.0</version>
+    <title>Cloud Screen Resolution</title>
+    <authors>dhoer</authors>
+    <projectUrl>https://github.com/dhoer/choco-cloud-screen-resolution</projectUrl>
+    <tags>windows cloud screen resolution</tags>
+    <summary>Sets screen resolution on Windows cloud server</summary>
+    <description>
+      Temp desc
+    </description>
+  </metadata>
+  <files>
+    <file src="tools\**" target="tools" />
+  </files>
+</package>
