@@ -4,13 +4,21 @@
     <id>cloud-screen-resolution</id>
     <version>1.0.0</version>
     <title>Cloud Screen Resolution</title>
-    <authors>dhoer</authors>
+    <authors>https://github.com/dhoer/choco-cloud-screen-resolution/graphs/contributors</authors>
+    <owners>dhoer</owners>
     <projectUrl>https://github.com/dhoer/choco-cloud-screen-resolution</projectUrl>
-    <tags>windows cloud screen resolution</tags>
-    <summary>Sets screen resolution on Windows cloud server</summary>
+    <docsUrl>https://github.com/dhoer/choco-cloud-screen-resolution/blob/master/ReadMe.md</docsUrl>
+    <tags>windows cloud display screen resolution</tags>
+    <summary>Sets screen resolution on Windows servers in the cloud</summary>
+    <bugTrackerUrl>https://github.com/dhoer/choco-cloud-screen-resolution/issues</bugTrackerUrl>
+    <iconUrl>https://cdn.rawgit.com/dhoer/choco-cloud-screen-resolution/a24a9a1e/tools/icon.png</iconUrl>
+    <licenseUrl>https://github.com/dhoer/choco-cloud-screen-resolution/blob/master/LICENSE</licenseUrl>
     <description>
-      Temp desc
+      Sets screen resolution on Windows servers in the cloud.
+
+      Selenium testing in the cloud at a specific resolution is a use case where this comes in handy.
     </description>
+    <releaseNotes>https://github.com/dhoer/choco-selenium/releases</releaseNotes>
   </metadata>
   <files>
     <file src="tools\**" target="tools" />
