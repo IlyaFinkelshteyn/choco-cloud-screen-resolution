@@ -16,4 +16,4 @@ describe 'Google Chrome' do
     element = @selenium.find_element(:id, 'resolutionNumber')
     expect(element.text).to eq(res)
   end
-end
+end unless ENV['APPVEYOR']

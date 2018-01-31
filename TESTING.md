@@ -1,6 +1,6 @@
 # Testing Cloud Screen Resolution
 
-This Chocolatey package uses
+This Chocolatey package uses [serverspec](http://serverspec.org/) and
 [selenium-webdriver](https://github.com/SeleniumHQ/selenium/wiki/Ruby-Bindings)
 for acceptance tests. [Ruby language](https://www.ruby-lang.org/) is
 required for acceptance testing and it is installed for you during
