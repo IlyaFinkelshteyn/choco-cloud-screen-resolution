@@ -39,7 +39,7 @@ schtasks /Run /TN "create_rdp_user"
 $ErrorActionPreference = "Stop";
 
 $timer =  [Diagnostics.Stopwatch]::StartNew()
-while (((Get-ScheduledTask -TaskName 'create_rdp_user').State -ne  'Ready') -and  ($timer.Elapsed.TotalSeconds -lt 350)) {
+while (((Get-ScheduledTask -TaskName 'create_rdp_user').State -ne  'Ready') -and  ($timer.Elapsed.TotalSeconds -lt 90)) {
   Write-Debug  -Message "Waiting on scheduled task..."
   Start-Sleep -Seconds  3
 }
