@@ -25,7 +25,7 @@ choco install -y cloud-screen-resolution --params "'/password:redacted /rdpPassw
 Set screen resolution to 1366×768:
 
 ```
-choco install -y cloud-screen-resolution --params "'/password:redacted /rdpPassword:redacted /width:1366 /height:768'"
+choco install -y cloud-screen-resolution --params "'/width:1366 /height:768 /password:redacted /rdpPassword:redacted'"
 ```
 
 ### AutoLogon
@@ -56,8 +56,6 @@ The following package parameters can be set:
 - `height:` - Display height in pixels. Default: `1080`.
 - `rdpGroups:` - RDP group members.
     Default: `@('Administrators', 'Remote Desktop Users')`.
-- `noautostart` - Do not RDP automatically into account on logon.
-    Default: `false`.
 
 These parameters can be passed to the installer with the use of
 `--params`. For example: `--params "'/password:redacted'"`.
