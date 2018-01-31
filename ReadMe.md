@@ -1,16 +1,15 @@
 ﻿# Cloud Screen Resolution
 
-Sets screen resolution on Windows server.
+Sets screen resolution on Windows servers in the cloud.
 
 Selenium testing in the cloud at a specific resolution is a use case
 where this comes in handy.
 
 This package does the following:
 
-- Creates local user account to Remote Desktop Protocol (RDP) - at
-  specified screen resolution (default is 1920x1080) - into another
-  user account (default is user executing choco install) on same
-  Windows server hosted in the cloud
+- Creates local user account to Remote Desktop Protocol (RDP) at
+  specified screen resolution (default is 1920x1080) into another
+  user account on same Windows server hosted in the cloud
 - Enables [Remote Desktop connections](https://technet.microsoft.com/en-us/library/cc722151%28v=ws.10%29.aspx)
 - Bypasses [Identity Of The Remote Computer Verification](http://www.mytecbits.com/microsoft/windows/rdp-identity-of-the-remote-computer)
 
@@ -36,7 +35,7 @@ to install the autologon package and run
 
 ```
 choco install -y autologon
-autologon rdp_local localhost redacted
+autologon rdp_local $env:userdomain redacted
 ```
 
 ## Usage
@@ -46,16 +45,15 @@ autologon rdp_local localhost redacted
 The following package parameters can be set:
 
 - `password:` - Password of account to RDP into (required).
-    Prompts user for password when it is not provided.
-- `rdpPassword:` - RDP password. Defaults to `password` when it is
-    not provided.
+- `rdpPassword:` - RDP password. Defaults to password of account to RDP
+   into when it is not provided.
 - `username:` - Username of account to RDP into.
     Default: `$env:UserName`.
 - `rdpUsername:` - RDP username. Default: `rdp_local`.
-- `width:` - Display width in pixels. Default: `1920`.
-- `height:` - Display height in pixels. Default: `1080`.
 - `rdpGroups:` - RDP group members.
     Default: `@('Administrators', 'Remote Desktop Users')`.
+- `width:` - Display width in pixels. Default: `1920`.
+- `height:` - Display height in pixels. Default: `1080`.
 
 These parameters can be passed to the installer with the use of
 `--params`. For example: `--params "'/password:redacted'"`.

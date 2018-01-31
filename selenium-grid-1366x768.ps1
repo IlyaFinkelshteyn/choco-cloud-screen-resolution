@@ -38,7 +38,7 @@ choco install -y selenium --params "'/role:node /capabilitiesJson:$capabilitiesJ
 ##
 
 choco pack C:\vagrant\cloud-screen-resolution.nuspec --outputdirectory C:\vagrant
-choco install -y cloud-screen-resolution --params "'/password:vagrant /rdpPassword:bfnhQ8UXRQ7R4eqb /width:1366 /height:768'" -d -s C:\vagrant --force
+choco install -y cloud-screen-resolution --params "'/width:1366 /height:768 /password:vagrant /rdpPassword:bfnhQ8UXRQ7R4eqb'" -d -s C:\vagrant --force
 
 
 ##
@@ -46,4 +46,4 @@ choco install -y cloud-screen-resolution --params "'/password:vagrant /rdpPasswo
 ##
 
 choco install -y autologon
-autologon rdp_local VAGRANT bfnhQ8UXRQ7R4eqb
+autologon rdp_local $env:userdomain bfnhQ8UXRQ7R4eqb

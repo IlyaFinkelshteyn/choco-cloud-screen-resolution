@@ -45,19 +45,33 @@ while (((Get-ScheduledTask -TaskName 'create_rdp_user').State -ne  'Ready') -and
 }
 $timer.Stop()
 
+$cmdName = "RDP-to-$($pp["username"])-at-res$($pp["width"])x$($pp["height"])"
+$cmdPath = "$displayDir\$cmdName.cmd"
+
+Write-Debug "$name - command path: $cmdPath"
+
+$cmd = "mstsc.exe /v localhost /w:$($pp["width"]) /h:$($pp["height"])"
+$cmd | Set-Content $cmdPath
+
+
 $startupDir = "C:\Users\$($pp["rdpUsername"])\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup"
 
 if (!(Test-Path $startupDir)) {
   New-Item $startupDir -ItemType Directory -Force
 }
 
-$cmdName = "RDP-to-$($pp["username"])-at-res$($pp["width"])x$($pp["height"])"
-$cmdPath = "$startupDir\$cmdName.cmd"
+$shortcutArgs = @{
+  shortcutFilePath = "$startupDir\$cmdName.lnk"
+  targetPath       = "$cmdPath"
+  iconLocation     = "$toolsDir\icon.ico"
+  workDirectory    = $displayDir
+}
+Install-ChocolateyShortcut @shortcutArgs
 
-Write-Debug "$name - command path: $cmdPath"
+# required by uninstaller to remove startup script
+"rdpUsername=$($pp["rdpUsername"])" | Set-Content $toolsDir\uninstall.parameters
 
-$cmd = "mstsc.exe /v localhost /w:$($pp["width"]) /h:$($pp["height"])"
-$cmd | Set-Content $cmdPath
+Write-Debug "$name - autostart: $startupDir\$cmdName.lnk"
 
 # https://technet.microsoft.com/en-us/library/cc722151%28v=ws.10%29.aspx
 Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Terminal Server" -Name "fDenyTSConnections" -Type DWord -Value 0
