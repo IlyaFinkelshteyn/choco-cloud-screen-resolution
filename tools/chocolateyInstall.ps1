@@ -40,7 +40,8 @@ $Settings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoi
 Register-ScheduledTask -TaskName $TaskName -User $pp["rdpUsername"] -Password $pp['rdpPassword'] -Action $Action -Settings $Settings -RunLevel Highest -Force
 Start-ScheduledTask -TaskName $TaskName
 
-Write-Debug Get-ScheduledTask
+Write-Verbose Get-ScheduledTask
+Write-Verbose ls c:\users
 
 $timer =  [Diagnostics.Stopwatch]::StartNew()
 while (((Get-ScheduledTask -TaskName $TaskName).State -ne  'Ready') -and  ($timer.Elapsed.TotalSeconds -lt 90)) {
@@ -50,6 +51,8 @@ while (((Get-ScheduledTask -TaskName $TaskName).State -ne  'Ready') -and  ($time
 $timer.Stop()
 
 Unregister-ScheduledTask -TaskName $TaskName
+
+Write-Verbose ls c:\users
 
 $cmdName = "RDP-to-$($pp["username"])-at-res$($pp["width"])x$($pp["height"])"
 $cmdPath = "$displayDir\$cmdName.cmd"
