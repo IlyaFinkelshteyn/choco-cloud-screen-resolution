@@ -14,7 +14,8 @@ Vagrant.configure("2") do |config|
   end
 
   # https://github.com/hashicorp/vagrant/issues/9138#issuecomment-342968348 -> privileged: false
-  config.vm.provision "shell", path: "selenium-grid-1366x768.ps1", privileged: false
+  config.vm.provision "shell", path: "cloud-screen-resolution.ps1", privileged: false
+  config.vm.provision "shell", path: "chrome-selenium-grid.ps1", privileged: false
   config.vm.provision "shell", inline: "choco install -y ruby --version 2.4.3.1", privileged: false
   config.vm.provision "shell", inline: "gem install bundler --no-document; cd C:\\vagrant; bundle update", privileged: false
 end

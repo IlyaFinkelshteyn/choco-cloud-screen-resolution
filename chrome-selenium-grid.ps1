@@ -33,22 +33,3 @@ $capabilitiesJson = "C:\tools\selenium\tn8-capabilities.json"
 ]
 '@ | New-Item $capabilitiesJson -Type file -Force
 choco install -y selenium --params "'/role:node /capabilitiesJson:$capabilitiesJson /autostart /log'" --force
-
-
-##
-# Install Cloud Screen Resolution
-##
-
-choco pack C:\vagrant\cloud-screen-resolution.nuspec --outputdirectory C:\vagrant
-choco install -y cloud-screen-resolution --params "'/width:1366 /height:768 /password:vagrant /rdpPassword:bfnhQ8UXRQ7R4eqb'" -d -s C:\vagrant --force
-
-
-##
-# Configure AutoLogon
-##
-
-# cleanup previous autologon vagrant setup
-Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name "AutoLogonCount"
-
-choco install -y autologon
-autologon rdp_local $env:userdomain bfnhQ8UXRQ7R4eqb
