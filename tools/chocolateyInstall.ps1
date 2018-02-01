@@ -32,18 +32,22 @@ ForEach ($group In $pp["rdpGroups"]) {
 	Add-LocalGroupMember -Group "$group" -Member $pp["rdpUsername"]
 }
 
-# Schedule a task to create the user home directory to allow for startup file
-schtasks /Create /TN "create_rdp_user" /SC once /SD "01/01/2003" /ST "00:00" /TR "cmdkey.exe /add:localhost /user:$($pp["username"]) /pass:$($pp["password"])" /RU "$($pp["rdpUsername"])" /RP "$($pp['rdpPassword'])" /RL HIGHEST /F
-schtasks /Run /TN "create_rdp_user"
-
 $ErrorActionPreference = "Stop";
 
+$TaskName = "CreateRdpHome"
+$Action = New-ScheduledTaskAction -Execute "cmdkey.exe" -Argument "/add:localhost /user:$($pp["username"]) /pass:$($pp["password"])"
+$Settings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries
+Register-ScheduledTask -TaskName $TaskName -User $pp["rdpUsername"] -Password $pp['rdpPassword'] -Action $Action -Settings $Settings -RunLevel Highest -Force
+Start-ScheduledTask -TaskName $TaskName
+
 $timer =  [Diagnostics.Stopwatch]::StartNew()
-while (((Get-ScheduledTask -TaskName 'create_rdp_user').State -ne  'Ready') -and  ($timer.Elapsed.TotalSeconds -lt 90)) {
-  Write-Debug  -Message "Waiting on scheduled task..."
+while (((Get-ScheduledTask -TaskName $TaskName).State -ne  'Ready') -and  ($timer.Elapsed.TotalSeconds -lt 90)) {
+  Write-Debug -Message "Waiting on scheduled task..."
   Start-Sleep -Seconds  3
 }
 $timer.Stop()
+
+Unregister-ScheduledTask -TaskName $TaskName
 
 $cmdName = "RDP-to-$($pp["username"])-at-res$($pp["width"])x$($pp["height"])"
 $cmdPath = "$displayDir\$cmdName.cmd"
