@@ -9,7 +9,7 @@ This package does the following:
 
 - Creates local user account to Remote Desktop Protocol (RDP) at
   specified screen resolution (default is 1920x1080) into another
-  user account on same Windows server hosted in the cloud
+  user account on same Windows server
 - Enables [Remote Desktop connections](https://technet.microsoft.com/en-us/library/cc722151%28v=ws.10%29.aspx)
 - Bypasses [Identity Of The Remote Computer Verification](http://www.mytecbits.com/microsoft/windows/rdp-identity-of-the-remote-computer)
 
@@ -31,7 +31,7 @@ choco install -y cloud-screen-resolution --params "'/width:1366 /height:768 /pas
 
 To automatically set Cloud Screen Resolution on server start, you need
 to install the autologon package and run
-`autologon <username> <domain> <password>` once to set it up.
+`autologon <rdpUsername> <domain> <rdpPassword>` once to set it up.
 
 ```
 choco install -y autologon
