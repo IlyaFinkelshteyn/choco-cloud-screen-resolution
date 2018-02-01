@@ -46,7 +46,8 @@ Register-ScheduledTask -TaskName $TaskName -User $pp["rdpUsername"] -Password $p
 $listing = Get-ScheduledTask
 Write-Host "before get scheduled task"
 Write-Host $listing
-Write-Host $env:userdomain
+Write-Host "userdomain: $env:userdomain"
+Write-Host "username: $env:UserName"
 
 Start-ScheduledTask -TaskName $TaskName
 
