@@ -39,15 +39,15 @@ $Action = New-ScheduledTaskAction -Execute "cmdkey.exe" -Argument "/add:localhos
 $Settings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries
 Register-ScheduledTask -TaskName $TaskName -User $pp["rdpUsername"] -Password $pp['rdpPassword'] -Action $Action -Settings $Settings -RunLevel Highest -Force
 
-Write-Verbose "before get scheduled task"
-Write-Verbose Get-ScheduledTask
-Write-Verbose "after get scheduled task"
+Write-Host "before get scheduled task"
+Write-Host Get-ScheduledTask
+Write-Host "after get scheduled task"
 
 Start-ScheduledTask -TaskName $TaskName
 
-Write-Verbose "before get scheduled task"
-Write-Verbose Get-ScheduledTask
-Write-Verbose "after get scheduled task"
+Write-Host "before get scheduled task"
+Write-Host Get-ScheduledTask
+Write-Host "after get scheduled task"
 
 $timer =  [Diagnostics.Stopwatch]::StartNew()
 while (((Get-ScheduledTask -TaskName $TaskName).State -ne  'Ready') -and  ($timer.Elapsed.TotalSeconds -lt 90)) {
