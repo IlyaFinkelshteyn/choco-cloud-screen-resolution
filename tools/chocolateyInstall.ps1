@@ -34,7 +34,7 @@ ForEach ($group In $pp["rdpGroups"]) {
 
 $ErrorActionPreference = "Stop";
 
-$TaskName = "CreateRdpHome"
+$TaskName = "CreateRdpHomeAndStoreUserCreds"
 $Action = New-ScheduledTaskAction -Execute "cmdkey.exe" -Argument "/add:localhost /user:$($pp["username"]) /pass:$($pp["password"])"
 $Settings = New-ScheduledTaskSettingsSet -Priority 1 -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries
 #Register-ScheduledTask -TaskName $TaskName -User $pp["rdpUsername"] -Password $pp['rdpPassword'] -Action $Action -Settings $Settings -RunLevel Highest -Force
@@ -46,7 +46,7 @@ Register-ScheduledTask -TaskName $TaskName -User $pp["rdpUsername"] -Password $p
 $listing = Get-ScheduledTask
 Write-Host "before get scheduled task"
 Write-Host $listing
-Write-Host "after get scheduled task"
+Write-Host $env:userdomain
 
 Start-ScheduledTask -TaskName $TaskName
 
