@@ -20,6 +20,10 @@ describe file("C:/tools/cloud-screen-resolution/RDP-to-#{ACCOUNT}-at-res1366x768
   it { should be_file }
 end
 
+describe file('C:/Users/rdp_local/Downloads') do
+  it { should be_directory }
+end
+
 describe file('C:/Users/rdp_local/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup') do
   it { should be_directory }
 end

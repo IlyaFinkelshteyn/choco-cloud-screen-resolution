@@ -62,7 +62,7 @@ while (((Get-ScheduledTask -TaskName $TaskName).State -ne  'Ready') -and  ($time
 }
 $timer.Stop()
 
-Unregister-ScheduledTask -TaskName $TaskName
+#Unregister-ScheduledTask -TaskName $TaskName
 
 $cmdName = "RDP-to-$($pp["username"])-at-res$($pp["width"])x$($pp["height"])"
 $cmdPath = "$displayDir\$cmdName.cmd"
