@@ -50,7 +50,8 @@ Write-Host " "
 Write-Host " "
 Write-Host "rdpusername:$($pp["rdpUsername"])"
 Write-Host "rdppassword:$($pp["rdpPassword"])"
-Write-Host Get-LocalGroupMember -name users
+$usrs = Get-LocalGroupMember -name users
+Write-Host $usrs
 Write-Host " "
 Write-Host " "
 Write-Host " "
