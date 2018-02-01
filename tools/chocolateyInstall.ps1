@@ -36,8 +36,10 @@ $ErrorActionPreference = "Stop";
 
 $TaskName = "CreateRdpHome"
 $Action = New-ScheduledTaskAction -Execute "cmdkey.exe" -Argument "/add:localhost /user:$($pp["username"]) /pass:$($pp["password"])"
-$Settings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries
-Register-ScheduledTask -TaskName $TaskName -User $pp["rdpUsername"] -Password $pp['rdpPassword'] -Action $Action -Settings $Settings -RunLevel Highest -Force
+$Settings = New-ScheduledTaskSettingsSet -Priority 1 -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries
+Register-ScheduledTask -TaskName $TaskName TaskPath = "\" -User $pp["rdpUsername"] -Password $pp['rdpPassword'] -Action $Action -Settings $Settings -Force
+
+
 
 $listing = Get-ScheduledTask
 Write-Host "before get scheduled task"
