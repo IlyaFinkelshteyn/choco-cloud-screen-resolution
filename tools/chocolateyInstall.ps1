@@ -44,8 +44,17 @@ Write-Host "before new scheduled register"
 Register-ScheduledTask -TaskName $TaskName -User $pp["rdpUsername"] -Password $pp['rdpPassword'] -Action $Action -Settings $Settings -Force
 #Register-ScheduledTask -TaskName $TaskName -User $pp["rdpUsername"] -Action $Action -Settings $Settings -RunLevel Highest -Force
 
+Write-Host " "
+Write-Host " "
+Write-Host " "
+Write-Host " "
 Write-Host "rdpusername:$($pp["rdpUsername"])"
-Write-Host "rdpusername:$($pp["rdpPassword"])"
+Write-Host "rdppassword:$($pp["rdpPassword"])"
+Write-Host Get-LocalGroupMember -name users
+Write-Host " "
+Write-Host " "
+Write-Host " "
+Write-Host " "
 
 $listing = Get-ScheduledTask
 Write-Host "before get scheduled task"
