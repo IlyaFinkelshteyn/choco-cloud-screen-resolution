@@ -40,6 +40,8 @@ $Settings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoi
 Register-ScheduledTask -TaskName $TaskName -User $pp["rdpUsername"] -Password $pp['rdpPassword'] -Action $Action -Settings $Settings -RunLevel Highest -Force
 Start-ScheduledTask -TaskName $TaskName
 
+Write-Debug Get-ScheduledTask
+
 $timer =  [Diagnostics.Stopwatch]::StartNew()
 while (((Get-ScheduledTask -TaskName $TaskName).State -ne  'Ready') -and  ($timer.Elapsed.TotalSeconds -lt 90)) {
   Write-Debug -Message "Waiting on scheduled task..."
