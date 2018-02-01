@@ -22,8 +22,9 @@ choco install -y cloud-screen-resolution --params "'/width:1366 /height:768 /pas
 # Configure AutoLogon
 ##
 
-# cleanup previous autologon vagrant setup
-Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name "AutoLogonCount"
+# cleanup previous vagrant autologon setup
+$RegPath ="HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon"
+Remove-ItemProperty -Path $RegPath -Name "AutoLogonCount" -ErrorAction SilentlyContinue
 
 choco install -y autologon
 autologon rdp_local $env:userdomain $RdpPassword
